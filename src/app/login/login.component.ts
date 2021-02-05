@@ -40,11 +40,16 @@ export class LoginComponent implements OnInit {
 
     this.accountService.login(em, psw).subscribe({
       next: (result) => {
-        this.accountService.USER = result;
-        this.alertService.success('Welcome back ' + result.name, {
-          keepAfterRouteChange: true,
-        });
-        this.router.navigateByUrl('');
+        if (result == undefined) {
+          this.alertService.clear();
+          this.alertService.error('Incorrect email or password');
+        } else {
+          this.accountService.USER = result;
+          this.alertService.success('Welcome back ' + result.name, {
+            keepAfterRouteChange: true,
+          });
+          this.router.navigateByUrl('');
+        }
       },
       error: (error) => {
         this.alertService.error(error);

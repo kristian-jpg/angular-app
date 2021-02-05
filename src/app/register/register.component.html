@@ -7,18 +7,18 @@
     <div class="row">
       <div class="form-group col-md-6">
         <label for="firstName">First Name</label>
-        <input id="firstName" class="form-control" type="text" formControlName="firstName" />
-        <div class="alert alert-danger" *ngIf="f.firstName.touched && f.firstName.invalid">
-          <span *ngIf=f.firstName.errors?.required>First name is required</span>
-        </div>
+        <input id="firstName" class="form-control" type="text" formControlName="firstName"
+          [ngClass]="{invalid: f.firstName.touched && f.firstName.errors?.required}" />
+        <span class="red" *ngIf="f.firstName.touched && f.firstName.errors?.required">
+          First name is required</span>
       </div>
 
       <div class="form-group col-md-6">
         <label for="lastName">Last Name</label>
-        <input id="lastName" class="form-control" type="text" formControlName="lastName" />
-        <div class="alert alert-danger" *ngIf="f.lastName.touched && f.lastName.invalid">
-          <span *ngIf=f.lastName.errors?.required>Last name is required</span>
-        </div>
+        <input id="lastName" class="form-control" type="text" formControlName="lastName"
+          [ngClass]="{invalid: f.lastName.touched && f.lastName.errors?.required}" />
+        <span class="red" *ngIf="f.lastName.touched && f.lastName.errors?.required">Last name is required</span>
+
       </div>
     </div>
 
@@ -46,12 +46,13 @@
     <!--USERNAME-->
     <div class="form-group">
       <label id="username" for="username">Username</label>
-      <input class="form-control" type="text" formControlName="username" />
-      <div class="alert alert-danger" *ngIf="f.username.touched && f.username.invalid">
-        <span *ngIf="f.username.errors?.required;else minLength">
+      <input class="form-control" type="text" formControlName="username"
+        [ngClass]="{invalid: f.username.touched && f.username.errors}" />
+      <div *ngIf="f.username.touched && f.username.invalid">
+        <span class="red" *ngIf="f.username.errors?.required;else minLength">
           Username is required</span>
         <ng-template #minLength>
-          <span *ngIf="f.username.errors">Username must be at least 6 characters</span>
+          <span class="red" *ngIf="f.username.errors">Username must be at least 6 characters</span>
         </ng-template>
       </div>
     </div>
@@ -59,9 +60,10 @@
     <!--EMAIL-->
     <div class="form-group">
       <label id="email" for="username">Email</label>
-      <input class="form-control" type="email" formControlName="email" />
-      <div class="alert alert-danger" *ngIf="f.email.touched && f.email.invalid">
-        <span *ngIf="f.email.errors?.required">
+      <input class="form-control" type="email" formControlName="email"
+        [ngClass]="{invalid: f.email.touched && f.email.invalid}" />
+      <div *ngIf="f.email.touched && f.email.invalid">
+        <span class="red" *ngIf="f.email.errors?.required">
           Email is required</span>
       </div>
     </div>
@@ -72,9 +74,10 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="password">Password</label>
-          <input id="password" class="form-control" type="password" formControlName="password" />
-          <div class="alert alert-danger" *ngIf="f.password.touched && f.password.invalid">
-            <span *ngIf=f.password.errors?.required>Password is required</span>
+          <input id="password" class="form-control" type="password" formControlName="password"
+            [ngClass]="{invalid: f.password.touched && f.password.errors?.required}" />
+          <div *ngIf="f.password.touched && f.password.invalid">
+            <span class="red" *ngIf=f.password.errors?.required>Password is required</span>
           </div>
         </div>
       </div>
@@ -83,10 +86,11 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="confirmPsw">Confirm Password</label>
-          <input id="confirmPsw" class="form-control" type="password" formControlName="confirmPsw" />
-          <div class="alert alert-danger" *ngIf="f.confirmPsw.touched && f.confirmPsw.invalid">
-            <span *ngIf=f.confirmPsw.errors?.required>Please confirm your password</span>
-            <span *ngIf=f.confirmPsw.errors?.Matcher>Password and Confirm Password must match</span>
+          <input id="confirmPsw" class="form-control" type="password" formControlName="confirmPsw"
+            [ngClass]="{invalid: f.confirmPsw.touched && f.confirmPsw.invalid }" />
+          <div *ngIf="f.confirmPsw.touched && f.confirmPsw.invalid">
+            <span class="red" *ngIf=f.confirmPsw.errors?.required>Please confirm your password</span>
+            <span class="red" *ngIf=f.confirmPsw.errors?.Matcher>Password and Confirm Password must match</span>
           </div>
         </div>
       </div>

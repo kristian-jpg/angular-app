@@ -8,11 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  user!: User;
 
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.accountService.USER.subscribe((u) => (this.user = u));
   }
 }
