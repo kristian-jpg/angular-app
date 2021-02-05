@@ -24,16 +24,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" routerLink="" routerLinkActive="active">Home <span
-              class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="(isLoggedIn | async)" class="nav-link" routerLink="" routerLinkActive="active">Profile</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+          <a *ngIf="(isLoggedIn | async)" class="nav-link" (click)="this.accountService.logout()" href="">Logout</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+          <a *ngIf="!(isLoggedIn | async)" class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="!(isLoggedIn | async)" class="nav-link" routerLink="/register"
+            routerLinkActive="active">Register</a>
         </li>
       </ul>
     </div>

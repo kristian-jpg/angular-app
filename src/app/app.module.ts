@@ -1,6 +1,6 @@
 import { AlertService } from './alert/alert.service';
 import { HttpClientModule } from '@angular/common/http';
-import { AccountService } from './account.service';
+import { AccountService } from './services/account.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -26,7 +26,7 @@ import { AlertComponent } from './alert/alert.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [AccountService, AlertService],
   bootstrap: [AppComponent],

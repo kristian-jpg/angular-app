@@ -1,7 +1,8 @@
+import { User } from './../model/User';
 import { AlertService } from './../alert/alert.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { AccountService } from './../account.service';
+import { AccountService } from '../services/account.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -39,12 +40,16 @@ export class LoginComponent implements OnInit {
     const psw: string = this.form.get('password')?.value;
 
     this.accountService.login(em, psw).subscribe({
-      next: (result) => {
+      next: (result: User) => {
         if (result == undefined) {
           this.alertService.clear();
           this.alertService.error('Incorrect email or password');
         } else {
-          this.accountService.USER = result;
+          //setting token
+          this.accountService.setToken(result.id);
+          //telling all the subscribers about the new status
+          this.accountService.isLoggedInSubject.next(true);
+
           this.alertService.success('Welcome back ' + result.name, {
             keepAfterRouteChange: true,
           });
