@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AlertComponent } from './alert/alert.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { AlertComponent } from './alert/alert.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AccountService, AlertService],
+  providers: [AccountService, AlertService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
